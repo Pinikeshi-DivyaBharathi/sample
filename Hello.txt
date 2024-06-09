@@ -19,7 +19,7 @@ const chrome = require('selenium-webdriver/chrome');
     }
 })();
 
-
+____________________________________________________________________
 
 TestCases :
 const { Builder, By, Key, until } = require('selenium-webdriver');
@@ -57,3 +57,11 @@ const chrome = require('selenium-webdriver/chrome');
         await driver.quit();
     }
 })();
+
+_____________________________________________________________________
+
+Dockerfile :
+FROM python
+WORKDIR /app
+COPY . /app
+CMD ["python3","app.py"]
