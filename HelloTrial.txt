@@ -1,0 +1,104 @@
+JENKINS DOWNLOAD :
+Jenkins download
+Prior download jdk 21 -- set bin path in environmental variables
+Install Jenkins – set user as local, specify port no, and set jdk 21 path during installation 
+After installation : navigate to localhost : port
+	Install suggested pluggings
+	Specify user details ( name, password, full name , email ) 
+LOCAL CODE RUN :
+	Create new free style project and specify its name
+	Under buildsteps – select “ execute windows batch command “ 
+	For Java program  : 
+Javac filepath : javac D:\3-2\DEVOPS\Main.java
+Java filepath: java D:\3-2\DEVOPS\Main.java
+              For python :
+        Python filepath
+•	On the left panel click build now – see the output on the right panel
+GIT HUB REMOTE RUN
+	Prior push the java file into the repository
+	Free style project – below description – githubproject – paste project url
+	Source code management – git – repository url
+	Under buildsteps 
+	Exec windows batch command :   javac className.java \n java className
+
+
+Pipeline :
+•	Choose pipeline instead of free style project
+•	Definition – pipeline script
+•	Paste code 
+node
+{
+stage('build')
+ {
+   echo "building project"
+ }
+ stage('deploy')
+ {
+   echo "deploying project"
+ }
+ stage('test')
+ {
+   echo "testing project"
+ }
+ stage('release')
+ {
+   echo "release project"
+ }
+}
+For git : definition – pipeline script for scm 
+--SCM – git --- repository Url – githuburl (that contained script code )
+Script path – script name ( same like in github)
+
+
+Configuring h1 -> h2-> h3
+Create 3 free style projects like previous..
+Under post build steps – build other projects – projects to build
+For h1—h2
+H2—h3
+Output : build h1—this executes  all the h1,h2,h3
+
+
+Adding the pipelines :
+	Manage Jenkins – on right side ( click plugins – available plugins—search bar ( build pipeline, delivery pipeline)
+Delivery pipeline
+	Dashboard – (+) icon – select – delivery pipeline 
+	In pipelines –add components – specify name, intial job, final job – okk
+
+
+Build pipeline 
+--- (+) build pipeline
+--- Build pipeline view title—Give suitable name
+--- pipeline low—upstream/downstream config—select intial Job
+--- Display options – specify number of builds – ok
+
+
+Docker  commands :
+•	Install and download docker 
+•	Specify sign in credentials after installation
+•	Run power shell as a administrator to execution docker commands
+•	Check docker version : docker –version
+•	Hello-world test : docker run hello-world ( pulls the image from the docker hub)
+•	To check the existing images : docker images
+•	Pulling specific image from docker hub : docker pull ubuntu
+•	Running image  ( it runs as a container ) : docker run -it -d <image-name>
+•	Listing all the containers : docker ps -a
+•	Running the container : docker exec <container-id> bash ---
+    *you can perform commands like : echo “helloworld” then exit
+•	Stopping the running container : docker stop <container-id>
+•	Removing containers : docker rm <container-id>
+•	To  remove images : docker rmi <image-id>
+•	Docker login :docker login
+•	Docker search : docker search <search-name>
+•	Creating custom container through image : 
+        Docker run   - - name  <container-name> -it <use-existing-imgName>  /bin/bash
+
+Containerized application :
+•	Create a folder
+•	Create python file (app.py with simple content)
+•	Create a file named Dockerfile with content :
+ FROM python
+WORKDIR /app
+COPY . /app
+CMD ["python3","app.py"]
+•	Execute cmd: docker  build -t app.py .
+•	Cmd: docker run app.py
